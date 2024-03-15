@@ -62,5 +62,7 @@ JPA_Hibernate/first-test/mysql-data/
 
 **/node_modules/
 
+*/**/.gitignore
+
 -- TESTING --
 **/*.madmoiselle
