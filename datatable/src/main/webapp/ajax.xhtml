@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head></h:head>
+<f:view>
+    <h:form>
+        <h:panelGrid columns="1">
+            <h:inputText value="#{ajaxBean.student.name}" id="name"/>
+            <h:inputText value="#{ajaxBean.student.surname}" id="surname"/>
+
+            <h:commandButton value="to-upper-case" actionListener="#{ajaxBean.toUpperCase()}">
+                <f:ajax execute="name surname" render="uppername uppersurname form2:name2"/>
+            </h:commandButton>
+
+            <h:outputText value="#{ajaxBean.student.name}" id="uppername"/>
+            <h:outputText value="#{ajaxBean.student.surname}" id="uppersurname"/>
+        </h:panelGrid>
+    </h:form>
+
+    <h:form id="form2">
+        <h:panelGrid columns="1">
+            <h:outputText value="#{ajaxBean.student.name}" id="name2"/>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

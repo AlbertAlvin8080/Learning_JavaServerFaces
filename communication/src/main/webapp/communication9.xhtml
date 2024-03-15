@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+    <o:form includeRequestParams="true" id="form-id">
+        <p:messages/>
+        <h2>Communication 9</h2>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Key: "/>
+            <h:inputText value="#{communicationBean9.key}" required="true" requiredMessage="Please fill in the key"/>
+            <h:outputLabel value="Value: "/>
+            <h:inputText value="#{communicationBean9.value}" required="true" requiredMessage="Please fill in the value"/>
+        </h:panelGrid>
+        <h:commandButton value="Show Cookie" actionListener="#{communicationBean9.showCookie}"/>
+        <h:commandButton value="Save Cookie" actionListener="#{communicationBean9.saveCookie}"/>
+        <h:button value="Next Page" outcome="#{communicationBean9.toPage10()}"
+                  rendered="#{not empty communicationBean9.key}">
+            <f:param name="key" value="#{communicationBean9.key}"/>
+        </h:button>
+    </o:form>
+</h:body>
+</html>

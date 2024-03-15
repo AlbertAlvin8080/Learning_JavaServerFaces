@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ac="http://albert.com.br/components">
+<h:head></h:head>
+<h:body>
+    <h:form>
+        <p:growl showDetail="true" id="messages" life="3000"/>
+
+        <h:panelGrid columns="1">
+            <h:selectOneMenu value="#{datatableBean.student}" required="true" requiredMessage="Choose a student">
+                <ac:studentConverter/>
+                <f:selectItem itemLabel="--- student ---" itemValue="#{null}"/>
+                <f:selectItems value="#{datatableBean.studentList}" var="student"
+                               itemValue="#{student}" itemLabel="#{student.name} #{student.surname}"/>
+            </h:selectOneMenu>
+            <h:commandButton actionListener="#{datatableBean.save2()}">
+                <f:attribute name="value" value="save"/>
+            </h:commandButton>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head></h:head>
+<h:body>
+    <h:form>
+        <h2>Flow 2</h2>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Endereco: " for="iendereco"/>
+            <h:inputText value="#{testFlowScoped.endereco}" required="true" requiredMessage="Endereço é um campo obrigatório"
+                         id="iendereco"/>
+            <h:commandButton value="Back" action="registration1?faces-redirect=true"/>
+            <h:commandButton value="Next" action="callPendencies"/>
+        </h:panelGrid>
+        <h:messages/>
+    </h:form>
+</h:body>
+</html>

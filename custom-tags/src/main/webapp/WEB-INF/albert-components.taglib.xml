@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<facelet-taglib
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_3_0.xsd"
+        version="3.0"
+>
+    <description>Albert Components</description>
+    <namespace>http://albert.com.br/components</namespace>
+    <short-name>ac</short-name>
+
+    <tag>
+        <tag-name>confirmDelete</tag-name>
+        <behavior>
+            <behavior-id>confirmDelete</behavior-id>
+        </behavior>
+    </tag>
+
+    <tag>
+        <tag-name>studentConverter</tag-name>
+        <converter>
+            <converter-id>studentConverter</converter-id>
+        </converter>
+    </tag>
+
+    <tag>
+        <tag-name>emailValidator</tag-name>
+        <validator>
+            <validator-id>emailValidator</validator-id>
+        </validator>
+    </tag>
+
+    <tag>
+        <tag-name>textRepeat</tag-name>
+        <component>
+            <component-type>textRepeat</component-type>
+        </component>
+
+        <attribute>
+            <description>
+                <![CDATA[The text to be repeated.]]>
+            </description>
+            <name>text</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                <![CDATA[Number of times the text must be included.]]>
+            </description>
+            <name>repeat</name>
+            <required>yes</required>
+            <type>java.lang.Integer</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>conditionalMessage</tag-name>
+        <component>
+            <component-type>conditionalMessage</component-type>
+        </component>
+
+        <attribute>
+            <description>
+                <![CDATA[Message to be displayed in case the condition is true.]]>
+            </description>
+            <name>trueMessage</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                <![CDATA[Message to be displayed in case the condition is false.]]>
+            </description>
+            <name>falseMessage</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                <![CDATA[Condition: true or false.]]>
+            </description>
+            <name>condition</name>
+            <required>true</required>
+            <type>boolean</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>starRating</tag-name>
+        <component>
+            <component-type>starRating</component-type>
+        </component>
+
+        <attribute>
+            <description>
+                <![CDATA[The max number of the rating.]]>
+            </description>
+            <name>maxRating</name>
+            <required>true</required>
+            <type>int</type>
+        </attribute>
+
+        <attribute>
+            <description>
+                <![CDATA[The score of the rating (0 to maxRating).]]>
+            </description>
+            <name>rating</name>
+            <required>true</required>
+            <type>int</type>
+        </attribute>
+    </tag>
+</facelet-taglib>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="default" name="/css/styles.css"/>
+    <h:outputScript library="default" name="/js/main.js"/>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            <h:inputText value="#{staticResourcesBean.name}"/>
+            <h:commandButton value="save" actionListener="#{staticResourcesBean.save()}" styleClass="btn"/>
+<!--            <h:graphicImage library="default" name="/images/#{staticResourcesBean.bSeAdapta ? 'se-adapta.png' : 'no-se-adapta.png'}"/>-->
+            <h:graphicImage library="default" name="/images/se-adapta.png" rendered="#{staticResourcesBean.bSeAdapta}"/>
+            <h:graphicImage library="default" name="/images/no-se-adapta.png" rendered="#{!staticResourcesBean.bSeAdapta and !staticResourcesBean.seAdaptaLegalmente()}"/>
+            <h:graphicImage library="default" name="/images/se-adapta-legalmente.png" rendered="#{staticResourcesBean.seAdaptaLegalmente()}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

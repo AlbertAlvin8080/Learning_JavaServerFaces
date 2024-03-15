@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Maratona JSF2</title>
+</h:head>
+<h:body>
+    <f:view>
+        <p:importEnum type="model.estudante.enums.Turno" var="TurnoEnum"
+                      allSuffix="ALL_ENUM_VALUES"/>
+
+        <h:outputLabel value="--- Klaus Poppe ---"/><br/>
+        <h:outputLabel value="#{estudanteRegistrarBean.estudante.nome}"/><br/>
+        <h:outputLabel value="#{estudanteRegistrarBean.estudante.sobrenome}"/><br/>
+        <h:outputLabel value="#{estudanteRegistrarBean.estudante.sobrenome.equalsIgnoreCase('Fernandez')}"/><br/>
+        <!-- ge -> greater or equals-->
+        <h:outputLabel value="nota1 &gt;= 40 ? #{estudanteRegistrarBean.estudante.nota1 ge 40 ? 'SIM' : 'NÃO'}"/><br/>
+        <!-- mensagem inadequada que não deve ser enviada ao cliente -->
+        <h:outputLabel value="Turnos: #{TurnoEnum.MATUTINO}, #{TurnoEnum.VESPERTINO}, #{TurnoEnum.NOTURNO}"/><br/>
+    </f:view>
+
+    <h:outputLabel value="MATERIAS: "/>
+    <ui:repeat value="#{estudanteRegistrarBean.list}" var="item">
+        <h:outputLabel value="#{item}, "/>
+    </ui:repeat>
+
+    <br/><h:outputLabel value="MAP: "/>
+    <ui:repeat value="#{estudanteRegistrarBean.map.entrySet().toArray()}" var="entry">
+        <br/><h:outputLabel value="#{entry}"/>
+    </ui:repeat>
+
+    <!--commandLink and commandButton only work inside a form-->
+    <h:form>
+        <h:commandLink value="PROXIMA PAGINA" action="#{estudanteRegistrarBean.index2()}"/><br/>
+        <h:commandButton value="PROXIMA PAGINA" action="#{estudanteRegistrarBean.index2()}"/><br/>
+    </h:form>
+
+    <p>testando &lt;p&gt;</p>
+
+    <br/>
+    <h:form id="myForm">
+        <h:commandButton value="EXIBIR NOTAS">
+            <f:ajax render="grid" listener="#{estudanteRegistrarBean.exibirNotas()}"/>
+        </h:commandButton><br/>
+        <h:panelGrid id="grid">
+            <h:outputLabel value="#{estudanteRegistrarBean.estudante.nome}"/>
+            <h:outputLabel value="#{estudanteRegistrarBean.estudante.sobrenome}"/>
+            <h:outputLabel value="#{estudanteRegistrarBean.estudante.nota1}"
+                           rendered="#{estudanteRegistrarBean.mostrarNotas}"/>
+            <h:outputLabel value="#{estudanteRegistrarBean.estudante.nota2}"
+                           rendered="#{estudanteRegistrarBean.mostrarNotas}"/>
+            <h:outputLabel value="#{estudanteRegistrarBean.estudante.nota3}"
+                           rendered="#{estudanteRegistrarBean.mostrarNotas}"/>
+        </h:panelGrid>
+    </h:form>
+
+    #{estudanteRegistrarBean.printar("menssagem teste")}
+</h:body>
+</html>
+

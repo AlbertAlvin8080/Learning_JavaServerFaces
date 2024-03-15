@@ -1,0 +1,32 @@
+:root {
+    --star-width: 50px;
+    --star-height: 50px;
+}
+
+.rating {
+    background-color: #dddddd;
+    cursor: pointer;
+    width: var(--star-width);
+    height: var(--star-height);
+    display: inline-block;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.rating-full {
+    background-color: #ffcc00 !important;
+    cursor: default !important;
+}
+
+.rating:not(.rating-full):hover {
+    background-color: #ffcc00;
+}
+
+.rating,
+.rating-full {
+    transition: background-color 0.3s ease;
+}
+
+.input-style {
+    color: blue !important;
+    border-color: red;
+}

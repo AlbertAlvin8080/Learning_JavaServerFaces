@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<facelet-taglib
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_3_0.xsd"
+        version="3.0"
+>
+    <description>Albert handlers</description>
+    <namespace>http://albert.com.br/handlers</namespace>
+    <short-name>ah</short-name>
+
+    <tag>
+        <tag-name>textRepeat</tag-name>
+        <handler-class>org.example.customtags.tag_handlers.TextRepeatHandler</handler-class>
+
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+
+        <attribute>
+            <name>repeat</name>
+            <required>true</required>
+            <type>int</type>
+        </attribute>
+
+        <attribute>
+            <name>uppercase</name>
+            <required>false</required>
+            <type>boolean</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>inputTextStyle</tag-name>
+        <handler-class>org.example.customtags.tag_handlers.InputTextStyleHandler</handler-class>
+    </tag>
+
+    <tag>
+        <tag-name>dateFormatter</tag-name>
+        <handler-class>org.example.customtags.tag_handlers.DateFormatterHandler</handler-class>
+
+        <attribute>
+            <name>date</name>
+            <required>true</required>
+            <type>java.util.Date</type>
+        </attribute>
+
+        <attribute>
+            <name>pattern</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+</facelet-taglib>

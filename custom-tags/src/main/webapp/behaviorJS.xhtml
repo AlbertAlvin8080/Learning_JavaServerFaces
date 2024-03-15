@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ac="http://albert.com.br/components">
+<h:head></h:head>
+<f:view>
+    <h:form id="form1">
+        <p:growl id="messages" showDetail="false" life="3000"/>
+        <c:set var="minWidth" value="200px"/>
+        <p:importEnum type="org.example.customtags.student.enums.Turno" var="Turno"
+                      allSuffix="ALL_ENUM_VALUES"/>
+
+        <h:dataTable value="#{datatableBean.studentList}" var="student" id="table">
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink value="Name" actionListener="#{datatableBean.sortByName}">
+                        <f:ajax render="messages table"/>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{student.name}" rendered="#{not student.editing}"
+                              style="display: inline-block; min-width: #{minWidth};"/>
+                <h:inputText value="#{student.name}" rendered="#{student.editing}"
+                             style="display: inline-block; min-width: #{minWidth};"
+                             required="true"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink value="Surname" actionListener="#{datatableBean.sortBySurname()}">
+                        <f:ajax render="messages table"/>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{student.surname}" rendered="#{not student.editing}"
+                              style="display: inline-block; min-width: #{minWidth};"/>
+                <h:inputText value="#{student.surname}" rendered="#{student.editing}"
+                             style="display: inline-block; min-width: #{minWidth};"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                <h:outputText value="#{student.email}" rendered="#{not student.editing}"
+                              style="display: inline-block; min-width: #{minWidth};"/>
+                <h:inputText value="#{student.email}" rendered="#{student.editing}"
+                             style="display: inline-block; min-width: #{minWidth};"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Turno</f:facet>
+                <h:outputText value="#{student.turno}" rendered="#{not student.editing}"/>
+                <h:selectOneMenu value="#{student.turno}" rendered="#{student.editing}">
+                    <f:selectItems value="#{Turno.ALL_ENUM_VALUES}" var="turno"
+                                   itemValue="#{turno}" itemLabel="#{turno}"/>
+                </h:selectOneMenu>
+            </h:column>
+            <h:column>
+                <f:facet name="header"/>
+                <f:ajax render="@form" event="click">
+                    <h:commandButton value="edit" actionListener="#{student.edit()}" rendered="#{not student.editing}"/>
+                    <h:commandButton value="save" actionListener="#{student.endEdit()}" rendered="#{student.editing}"/>
+                </f:ajax>
+            </h:column>
+            <h:column>
+                <f:facet name="header"/>
+                <h:commandButton value="remove" actionListener="#{datatableBean.remove(student)}"
+                                 rendered="#{not student.editing}">
+                    <f:ajax event="click" render="@form">
+                        <!-- se retornar verdadeiro, executa o actionListener -->
+                        <ac:confirmDelete/>
+                    </f:ajax>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</f:view>
+</html>

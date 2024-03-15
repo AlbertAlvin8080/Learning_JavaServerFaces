@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ac="http://albert.com.br/components">
+<h:head>
+    <h:outputStylesheet library="default" name="/css/styles.css"/>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            <ac:textRepeat text="meu texto" repeat="5"/>
+            <ac:conditionalMessage condition="true" trueMessage="condição é verdadeira"
+                                   falseMessage="condição é falsa"/>
+            <ac:conditionalMessage trueMessage="condição é verdadeira" falseMessage="condição é falsa"
+                                   condition="false"/>
+            <ac:starRating rating="1" maxRating="3"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

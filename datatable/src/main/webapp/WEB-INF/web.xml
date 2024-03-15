@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <!--        <welcome-file>primefaces-datatable.xhtml</welcome-file>-->
+        <!--        <welcome-file>datatable.xhtml</welcome-file>-->
+        <!--        <welcome-file>passThroughAttributes.xhtml</welcome-file>-->
+        <!--        <welcome-file>passThroughElements.xhtml</welcome-file>-->
+        <!--        <welcome-file>clientSideValidation.xhtml</welcome-file>-->
+        <!--        <welcome-file>ajax2.xhtml</welcome-file>-->
+        <!--        <welcome-file>ajax3.xhtml</welcome-file>-->
+        <!--                <welcome-file>converter.xhtml</welcome-file>-->
+        <!--        <welcome-file>beanValidation.xhtml</welcome-file>-->
+        <!--        <welcome-file>inputFile.xhtml</welcome-file>-->
+<!--        <welcome-file>invalidateSessionTest.xhtml</welcome-file>-->
+        <welcome-file>staticResources.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>jakarta.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>files.location</param-name>
+        <param-value>C:\Users\Albert\Documents\A_Programacao\JSF\datatable\src\main\resources\files</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jakarta.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+        <!--        <param-value>client</param-value>-->
+    </context-param>
+
+    <!--    <context-param>-->
+    <!--        <param-name>jakarta.faces.PARTIAL_STATE_SAVING</param-name>-->
+    <!--        <param-value>true</param-value>-->
+    <!--    </context-param>-->
+
+    <env-entry>
+        <env-entry-name>faces/ClientSideSecretKey</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>BU4p7THPRIds6V7qPDIzXQ==</env-entry-value>
+    </env-entry>
+    <!--This tag tells your application server to replicate HTTP sessions-->
+    <!--    <distributable/>-->
+
+    <!--    <context-param>-->
+    <!--        <param-name>com.sun.faces.numberOfLogicalViews</param-name>-->
+    <!--        <param-value>2</param-value>-->
+    <!--    </context-param>-->
+    <!--    -->
+    <!--    <context-param>-->
+    <!--        <param-name>com.sun.faces.numberOfViewsInSession</param-name>-->
+    <!--        <param-value>4</param-value>-->
+    <!--    </context-param>-->
+
+    <error-page>
+        <exception-type>jakarta.faces.application.ViewExpiredException</exception-type>
+        <location>/viewExpiredException.xhtml</location>
+    </error-page>
+
+    <!--    @Deprecated-->
+    <!--    <context-param>-->
+    <!--        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>-->
+    <!--        <param-value>true</param-value>-->
+    <!--    </context-param>-->
+</web-app>

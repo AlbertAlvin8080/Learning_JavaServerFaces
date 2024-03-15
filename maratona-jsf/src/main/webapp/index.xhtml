@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+    <title>Maratona JSF</title>
+</h:head>
+<h:body>
+    <c:set var="lista" value="#{[1, 2, 3, 4]}"/>
+    <p>--- LISTA ---</p>
+    <ui:repeat value="#{lista}" var="item" varStatus="status">
+        <span>#{item} [status-idx: #{status.index}]</span>
+    </ui:repeat>
+
+    <p>--- MAPA ---</p>
+    <!-- esse erro no mapa é má interpretação do IntelliJ-->
+    <c:set var="mapa" value="#{{'chave1':'valor1', 'chave2':'valor2', 'chave3':'valor3'}}"/>
+    <ui:repeat value="#{mapa.entrySet()}" var="entry">
+        <p>#{entry.key} - #{entry.value}</p>
+    </ui:repeat>
+
+    <!-- data-text funcionando perfeitamente -->
+    <p data-text="lambda-espression">LE = #{lambda = (v) -> v * 3; lambda(33)}</p>
+    <!--    #{lambda = (v) -> v * 3} = #{lambda(9)}-->
+
+    <p>#{estudanteRegistrarBean.usarLambda((v) -> v*99, 2)}</p>
+
+    <h:form id="form-id">
+        <h:commandButton value="EXIBIR MENSSAGEM">
+            <f:ajax render="form-id" listener="#{estudanteRegistrarBean.exibirMensagem()}"/>
+        </h:commandButton>
+        <h:panelGrid id="mensagem-id" rendered="#{estudanteRegistrarBean.bExibirMensagem}">
+            <p>MINHA MENSAGEM</p>
+        </h:panelGrid>
+    </h:form>
+
+    <p>--- STREAMS ---</p>
+    <ui:repeat value="#{[1, 33, 4, 5, 6, 7, 88].stream().filter(n -> n%2 == 0).toList()}" var="item">
+        <span>#{item}</span>
+    </ui:repeat>
+
+    <c:set value="#{[43, 55, 7, 78].stream().average().get()}" var="average"/>
+    <c:set value="#{[43, 55, 7, 78].stream().sum()}" var="sum"/>
+    <p>#{average}</p>
+    <p>#{sum}</p>
+</h:body>
+</html>

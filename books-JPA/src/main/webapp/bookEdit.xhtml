@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+</h:head>
+<h:body>
+    <h:inputHidden value="#{flash.keep}"/>
+    <h:form>
+        <p:growl life="3000" id="messages" showDetail="true"/>
+        <c:set value="300px" var="column-width"/>
+
+        <h:panelGrid columns="1">
+            <h:outputLabel value="Id"/>
+            <h:inputText value="${bookEditBean.book.id}" disabled="true"/>
+
+            <h:outputLabel value="Name"/>
+            <h:inputText value="#{bookEditBean.book.name}" required="true" requiredMessage="fill in a name"/>
+
+            <h:outputLabel value="Authors' names"/>
+            <h:inputText value="#{bookEditBean.authorsNames}"/>
+
+            <p:commandButton action="#{bookEditBean.save()}" value="save"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

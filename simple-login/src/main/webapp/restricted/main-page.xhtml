@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<f:view locale="#{loginBean.language}">
+    <h:form>
+        <p:messages autoUpdate="true"/>
+        <h2>Main Page</h2>
+        <p:panelGrid columns="1">
+            <h:outputFormat value="#{m.welcome}">
+                <f:param value="#{loginBean.student.name}"/>
+                <f:param value="#{loginBean.student.surname}"/>
+            </h:outputFormat>
+            <h:outputFormat value="#{m.yourpassword}">
+                <f:param value="#{loginBean.student.password}"/>
+            </h:outputFormat>
+            <h:outputFormat value="#{m.alert}">
+                <f:param value="#{loginBean.alertCount}"/>
+            </h:outputFormat>
+            <h:commandButton value="#{m.logout}" action="#{loginBean.logout()}"/>
+            <h:commandButton value="#{m.logout} 2" action="#{loginBean.logout2()}"/>
+        </p:panelGrid>
+    </h:form>
+</f:view>
+</html>

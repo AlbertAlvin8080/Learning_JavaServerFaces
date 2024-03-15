@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="4.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                                  https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd" >
+    <component>
+        <component-type>textRepeat</component-type>
+        <component-class>org.example.customtags.tag_components.TextRepeatComponent</component-class>
+    </component>
+
+    <component>
+        <component-type>conditionalMessage</component-type>
+        <component-class>org.example.customtags.tag_components.ConditionalMessageComponent</component-class>
+    </component>
+
+    <component>
+        <component-type>starRating</component-type>
+        <component-class>org.example.customtags.tag_components.StarRatingComponent</component-class>
+    </component>
+
+    <validator>
+        <validator-id>emailValidator</validator-id>
+        <validator-class>org.example.customtags.validators.EmailValidator</validator-class>
+    </validator>
+
+    <converter>
+        <converter-id>studentConverter</converter-id>
+        <converter-class>org.example.customtags.converters.StudentConverter</converter-class>
+    </converter>
+</faces-config>

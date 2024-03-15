@@ -1,0 +1,106 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/layout2.xhtml">
+    <ui:define name="content2">
+        <h:form id="form1">
+            <c:set var="minWidth" value="200px"/>
+            <p:importEnum type="org.example.customtags.student.enums.Turno" var="Turno"
+                          allSuffix="ALL_ENUM_VALUES"/>
+
+            <p:growl id="messages" showDetail="true"/>
+
+            <!-- Use p:dataTable for PrimeFaces dataTable -->
+            <p:dataTable value="#{datatableBean.studentList}" var="student"
+                         rows="5" paginator="true" id="dataTable" editable="true"
+                         allowUnsorting="true" sortMode="multiple">
+
+                <p:ajax event="rowEdit" listener="#{datatableBean.onRowEdit}"
+                        update=":form1:dataTable :form1:messages"/>
+                <p:ajax event="rowEditCancel" listener="#{datatableBean.onRowCancel}"
+                        update=":form1:dataTable :form1:messages"/>
+
+                <p:column headerText="Name" sortBy="#{student.name}">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{student.name}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{student.name}" style="width:200px" required="true"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Surname">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{student.surname}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{student.surname}" style="width:200px"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="E-mail">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{student.email}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{student.email}" style="width:200px"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Turno">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{student.turno}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{student.turno}" style="width:200px">
+                                <f:selectItems value="#{Turno.ALL_ENUM_VALUES}" var="turno"
+                                               itemValue="#{turno}" itemLabel="#{turno}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column>
+                    <p:rowEditor/>
+                </p:column>
+
+                <p:column>
+                    <p:commandButton value="Remove" action="#{datatableBean.remove(student)}" ajax="true"
+                                     update=":form1:dataTable :form1:messages"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:commandButton value="Add" actionListener="#{datatableBean.openAddDialog()}" icon="pi pi-home" ajax="true"
+                             update=":form1:dataTable :form1:messages" immediate="true"/>
+        </h:form>
+
+        <p:dialog header="Add Student" widgetVar="dialogAddStudent" closable="true">
+            <h:form>
+                <h:panelGrid columns="1">
+                    <h:outputText value="Name"/>
+                    <p:inputText value="#{datatableBean.student.name}" required="true" requiredMessage="Fill in name"/>
+                    <h:outputText value="Surname"/>
+                    <p:inputText value="#{datatableBean.student.surname}"/>
+                    <h:outputText value="E-mail"/>
+                    <p:inputText value="#{datatableBean.student.email}"/>
+                    <p:selectOneMenu value="#{datatableBean.student.turno}" required="true"
+                                     requiredMessage="Select one shift">
+                        <f:selectItem itemValue="#{null}" itemLabel="--- Select ---"/>
+                        <f:selectItems value="#{Turno.ALL_ENUM_VALUES}" var="turno"
+                                       itemLabel="#{turno}" itemValue="#{turno}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="Confirm" actionListener="#{datatableBean.add()}" ajax="true"
+                                     update=":form1:dataTable :form1:messages" type="submit"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>

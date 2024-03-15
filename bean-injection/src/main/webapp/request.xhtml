@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head></h:head>
+<h:body>
+    <h:form>
+        <h2>Request Injection</h2>
+        <h:panelGrid columns="1">
+            <!-- WARNING: one should not access higher scopes via a lower one. This is just for didactic purposes -->
+            <h:outputLabel value="AppInj: #{requestInjectedBean.applicationBean.selectedDisciplines}"/>
+            <h:outputLabel value="SessionInj: #{requestInjectedBean.sessionBean.selectedDisciplines}"/>
+            <h:outputLabel value="ViewInj: #{requestInjectedBean.viewBean.selectedDisciplines}"/>
+            <h:outputLabel value="Dependent: #{requestInjectedBean.dependentBean.selectedDisciplines}"/>
+            <h:outputLabel value="Request: #{requestInjectedBean.selectedDisciplines}"/>
+        </h:panelGrid>
+        <h:panelGrid columns="3">
+            <h:commandButton actionListener="#{requestInjectedBean.selectDiscipline()}" value="Add"/>
+            <h:commandButton action="request2" value="NextPage Forward"/>
+            <h:commandButton action="request2?faces-redirect=true" value="NextPage Redirect"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

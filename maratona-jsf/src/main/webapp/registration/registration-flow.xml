@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="4.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                                  https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd">
+
+    <flow-definition id="registration">
+        <start-node>flowStart</start-node>
+        <view id="flowStart">
+            <vdl-document>/registration/registration1.xhtml</vdl-document>
+        </view>
+        
+        <switch id="registrationPage1">
+            <case>
+                <if>#{not empty testFlowScoped.nome and not empty testFlowScoped.sobrenome}</if>
+                <from-outcome>registration2</from-outcome>
+            </case>
+            <default-outcome>/registration/registration1.xhtml</default-outcome>
+        </switch>
+
+        <flow-return id="exitToInicioFlow">
+            <from-outcome>/inicio-flow.xhtml</from-outcome>
+        </flow-return>
+        
+        <flow-call id="callPendencies">
+            <flow-reference>
+                <flow-id>pendencies</flow-id>
+            </flow-reference>
+            <outbound-parameter>
+                <name>name</name>
+                <value>#{testFlowScoped.nome}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>surname</name>
+                <value>#{testFlowScoped.sobrenome}</value>
+            </outbound-parameter>
+        </flow-call>
+        
+        <finalizer>#{testFlowScoped.saveData()}</finalizer>
+    </flow-definition>
+
+</faces-config>
